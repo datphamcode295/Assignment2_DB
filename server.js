@@ -18,10 +18,15 @@ app.use(express.urlencoded({ extended: true })); /* bodyParser.urlencoded() is d
 
 // simple route
 app.get("/", (req, res) => {
-  res.json({ message: "Welcome to bezkoder application." });
+  res.json({ message: "Welcome to bezkoder aapplication." });
 });
 
 require("./app/routes/tutorial.routes.js")(app);
+require("./app/routes/author.routes.js")(app);
+require("./app/routes/user.routes.js")(app);
+require("./app/routes/creditCard.routes.js")(app);
+require("./app/routes/totalOrder.routes.js")(app);
+require("./app/routes/book.routes.js")(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
