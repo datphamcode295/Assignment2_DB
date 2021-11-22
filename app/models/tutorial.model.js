@@ -1,5 +1,7 @@
 const sql = require("./db.js");
 
+//-------------------------------------------------------template--------------------------------------
+
 // constructor
 const Tutorial = function(tutorial) {
   this.title = tutorial.title;
@@ -125,5 +127,6 @@ Tutorial.removeAll = result => {
     result(null, res);
   });
 };
+//-------------------------------------------------------end template--------------------------------------
 
 module.exports = Tutorial;

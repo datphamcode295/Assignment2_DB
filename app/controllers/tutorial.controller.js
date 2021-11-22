@@ -1,5 +1,8 @@
 const Tutorial = require("../models/tutorial.model.js");
 
+
+
+//-------------------------------------------------------template--------------------------------------
 // Create and Save a new Tutorial
 exports.create = (req, res) => {
   // Validate request
@@ -128,3 +131,5 @@ exports.deleteAll = (req, res) => {
     else res.send({ message: `All Tutorials were deleted successfully!` });
   });
 };
+
+//-------------------------------------------------------end template--------------------------------------

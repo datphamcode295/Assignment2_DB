@@ -3,6 +3,7 @@ module.exports = app => {
 
   var router = require("express").Router();
 
+//-------------------------------------------------------template--------------------------------------
   // Create a new Tutorial
   router.post("/", tutorials.create);
 
@@ -23,6 +24,9 @@ module.exports = app => {
 
   // Delete all Tutorials
   router.delete("/", tutorials.deleteAll);
+
+//-------------------------------------------------------end template--------------------------------------
+
 
   app.use('/api/tutorials', router);
 };
