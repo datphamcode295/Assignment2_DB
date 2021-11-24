@@ -85,3 +85,70 @@ exports.findAllAuthor = (req, res) => {
       else res.send(data);
     });
   };
+
+  exports.findAllPurchaseInDay = (req, res) => {
+    Book.getAllPurchaseInDay(req.params.year, req.params.month, req.params.day, (err, data) => {
+      if (err)
+        res.status(500).send({
+          message:
+            err.message || "Some error occurred while retrieving tutorials."
+        });
+      else res.send(data);
+    });
+  };
+
+  exports.findAllCountPurchaseInDay = (req, res) => {
+    Book.getAllCountPurchaseInDay(req.params.year, req.params.month, req.params.day, (err, data) => {
+      if (err)
+        res.status(500).send({
+          message:
+            err.message || "Some error occurred while retrieving tutorials."
+        });
+      else res.send(data);
+    });
+  };
+
+  exports.findAllCountPurchaseDigitalInDay = (req, res) => {
+    Book.getAllCountPurchaseDigitalInDay(req.params.year, req.params.month, req.params.day, (err, data) => {
+      if (err)
+        res.status(500).send({
+          message:
+            err.message || "Some error occurred while retrieving tutorials."
+        });
+      else res.send(data);
+    });
+  };
+
+  exports.findAllCountPurchaseNonDigitalInDay = (req, res) => {
+    Book.getAllCountPurchaseNonDigitalInDay(req.params.year, req.params.month, req.params.day, (err, data) => {
+      if (err)
+        res.status(500).send({
+          message:
+            err.message || "Some error occurred while retrieving tutorials."
+        });
+      else res.send(data);
+    });
+  };
+
+  exports.countLendInDay = (req, res) => {
+    Book.countLendInDay(req.params.year, req.params.month, req.params.day, (err, data) => {
+      if (err)
+        res.status(500).send({
+          message:
+            err.message || "Some error occurred while retrieving tutorials."
+        });
+      else res.send(data);
+    });
+  };
+
+  exports.mostBoughInMonth = (req, res) => {
+    Book.mostBoughInMonth(req.params.year, req.params.month, (err, data) => {
+      if (err)
+        res.status(500).send({
+          message:
+            err.message || "Some error occurred while retrieving tutorials."
+        });
+      else res.send(data);
+    });
+  };
+  

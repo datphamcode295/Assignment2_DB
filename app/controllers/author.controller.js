@@ -15,3 +15,25 @@ exports.findOne = (req, res) => {
       } else res.send(data);
     });
   };
+
+  exports.bestInDay = (req, res) => {
+    Author.bestInDay(req.params.year, req.params.month, req.params.day, (err, data) => {
+      if (err)
+        res.status(500).send({
+          message:
+            err.message || "Some error occurred while retrieving tutorials."
+        });
+      else res.send(data);
+    });
+  };
+
+  exports.bestInMonth = (req, res) => {
+    Author.bestInMonth(req.params.year, req.params.month, (err, data) => {
+      if (err)
+        res.status(500).send({
+          message:
+            err.message || "Some error occurred while retrieving tutorials."
+        });
+      else res.send(data);
+    });
+  };

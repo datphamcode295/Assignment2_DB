@@ -2,5 +2,5 @@ module.exports = {
   HOST: "localhost",
   USER: "root",
   PASSWORD: "",
-  DB: "newbd"
+  DB: "ebook_store"
 };

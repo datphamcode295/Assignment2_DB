@@ -179,4 +179,124 @@ Book.getAllAuthor = (author,result) => {
     });
   };
 
+  Book.getAllPurchaseInDay = (year,month,day,result) => {
+    sql.query(`
+    SELECT books.ISBN FROM Books, Total_Order, Sub_Order
+    WHERE Total_Order.Date > '${year}-${month}-${day} 00:00:00' and Total_Order.Date < '${year}-${month}-${parseInt(day)} 23:59:59' and 
+    Books.ISBN = Sub_Order.ISBN and Sub_Order.Order_ID=Total_Order.order_ID;
+    
+    `,(err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(null, err);
+        return;
+      }
+  
+      console.log("booka: ", res);
+      result(null, res);
+    });
+  };
+
+
+  Book.getAllCountPurchaseInDay = (year,month,day,result) => {
+    sql.query(`
+    SELECT Books.ISBN, SUM(Sub_Order.Quantity)
+    FROM Books, Total_Order, Sub_Order
+    WHERE Total_Order.Date > '${year}-${month}-${day} 00:00:00' and 
+    Total_Order.Date < '${year}-${month}-${day} 23:59:59' and Books.ISBN = Sub_Order.ISBN and Sub_Order.Order_ID=Total_Order.order_ID
+    GROUP BY ISBN;
+    `,(err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(null, err);
+        return;
+      }
+  
+      console.log("book: ", res);
+      result(null, res);
+    });
+  };
+
+  Book.getAllCountPurchaseDigitalInDay = (year,month,day,result) => {
+    sql.query(`
+    SELECT Books.ISBN, SUM(Sub_Order.Quantity)
+    FROM Books, Total_Order, Sub_Order
+    WHERE Total_Order.Date > '${year}-${month}-${day} 00:00:00' and 
+    Total_Order.Date < '${year}-${month}-${day} 23:59:59'
+    and Books.ISBN = Sub_Order.ISBN and Sub_Order.Order_ID=Total_Order.order_ID 
+    and Books.isDigital = True
+    GROUP BY ISBN;
+    `,(err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(null, err);
+        return;
+      }
+  
+      console.log("book: ", res);
+      result(null, res);
+    });
+  };
+
+  Book.getAllCountPurchaseNonDigitalInDay = (year,month,day,result) => {
+    sql.query(`
+    SELECT Books.ISBN, SUM(Sub_Order.Quantity)
+    FROM Books, Total_Order, Sub_Order
+    WHERE Total_Order.Date > '${year}-${month}-${day} 00:00:00' and 
+    Total_Order.Date < '${year}-${month}-${day} 23:59:59'
+    and Books.ISBN = Sub_Order.ISBN and Sub_Order.Order_ID=Total_Order.order_ID 
+    and Books.isDigital = False
+    GROUP BY ISBN;
+    `,(err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(null, err);
+        return;
+      }
+  
+      console.log("book: ", res);
+      result(null, res);
+    });
+  };
+
+  Book.countLendInDay = (year,month,day,result) => {
+    sql.query(`
+    SELECT Books.ISBN, SUM(Sub_Order.Quantity)
+    FROM Books, Total_Order, Sub_Order
+    WHERE Total_Order.Date > '${year}-${month}-${day} 00:00:00' and 
+    Total_Order.Date < '${year}-${month}-${day} 23:59:59'
+    and Books.ISBN = Sub_Order.ISBN and Sub_Order.Order_ID=Total_Order.order_ID and 
+    Books.isDigital = True and Sub_Order.is_hired = True
+    GROUP BY ISBN;
+    `,(err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(null, err);
+        return;
+      }
+  
+      console.log("book: ", res);
+      result(null, res);
+    });
+  };
+
+  Book.mostBoughInMonth = (year, month, result) => {
+    sql.query(`
+    SELECT Books.ISBN, Books.Title, SUM(Sub_Order.Quantity)
+    FROM Sub_Order, Total_Order,Books
+    WHERE MONTH(Total_Order.Date) = ${month} AND YEAR(Total_Order.Date) = ${year}  and Books.ISBN = Sub_Order.ISBN and Sub_Order.Order_ID=Total_Order.order_ID
+    GROUP BY ISBN
+    ORDER BY SUM(Sub_Order.Quantity) DESC;
+    `,(err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(null, err);
+        return;
+      }
+  
+      console.log("book: ", res);
+      result(null, res);
+    });
+  };
+
   module.exports = Book;

@@ -25,6 +25,29 @@ module.exports = app => {
     router.get("/cancelInMonth/:month/:id", books.findAllCancelMonth);
     //(ii.11)
     router.get("/pendingInMonth/:month/:id", books.findAllPendingMonth);
+    //(i.4)
+    // http://localhost:8080/api/books//pucharseInday/2006/11/30
+    router.get("/pucharseInday/:year/:month/:day", books.findAllPurchaseInDay);
+    //(i.5)
+    //http://localhost:8080/api/books//countPucharseInday/2006/11/30
+    router.get("/countPucharseInday/:year/:month/:day", books.findAllCountPurchaseInDay);
+    //(i.6)
+    // http://localhost:8080/api/books//countPucharseDigitalInday/2006/11/30
+    router.get("/countPucharseNonDigitalInday/:year/:month/:day", books.findAllCountPurchaseNonDigitalInDay);
+    //(i.7)
+    // http://localhost:8080/api/books//countPucharseDigitalInday/2006/11/30
+    router.get("/countPucharseDigitalInday/:year/:month/:day", books.findAllCountPurchaseDigitalInDay);
+    //(i.8)
+    //http://localhost:8080/api/books//countLendInDay/2006/11/30
+    router.get("/countLendInday/:year/:month/:day", books.countLendInDay);
+    //(i.11)
+    //http://localhost:8080/api/books/mostBoughInMonth/2006/11
+    router.get("/mostBoughInMonth/:year/:month", books.mostBoughInMonth);
+
+
+
+
+
 
 
     app.use('/api/books', router);
