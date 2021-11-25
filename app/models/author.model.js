@@ -69,5 +69,33 @@ Author.bestInMonth = (year,month,result) => {
     result(null, res);
   });
 };
+Author.samecategory = (data, result) => {
+  sql.query(`SELECT * FROM ( SELECT * FROM book_writer AS bw JOIN books AS b ON bw.ID_information = b.ISBN) As al JOIN author AS a ON a.ID = al.Author_ID WHERE al.Genre= ?;`,[data], (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(err, null);
+      return;
+    }
+    // not found Tutorial with the id
+    result(null,res);
+  });
+};
+
+Author.samenumberofkeyword = (data, result) => {
+  sql.query(`SELECT * FROM(
+              (SELECT*FROM(
+                (SELECT * FROM book_writer AS bw JOIN books AS b ON bw.ID_information = b.ISBN) 
+                  AS al JOIN author AS a ON a.ID = al.Author_ID) ) AS d JOIN keywords AS kw ON d.ISBN = kw.Book_ID) 
+                WHERE kw.keywords =?;`
+  ,[data], (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(err, null);
+      return;
+    }
+    // not found Tutorial with the id
+    result(null,res);
+  });
+};
 
 module.exports = Author;

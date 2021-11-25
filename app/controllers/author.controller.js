@@ -37,3 +37,23 @@ exports.findOne = (req, res) => {
       else res.send(data);
     });
   };
+  exports.findsamecategory = (req, res) => {
+    Author.samecategory(req.params.data, (err, data) => {
+      if (err)
+        res.status(500).send({
+          message:
+            err.message || "Some error occurred while retrieving tutorials."
+        });
+      else res.send(data);
+    });
+  };
+exports.findsamenumberofkeyword = (req, res) => {
+    Author.samenumberofkeyword(req.params.data, (err, data) => {
+      if (err)
+        res.status(500).send({
+          message:
+            err.message || "Some error occurred while retrieving tutorials."
+        });
+      else res.send(data);
+    });
+  };

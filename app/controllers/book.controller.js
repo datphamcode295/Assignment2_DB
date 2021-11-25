@@ -151,4 +151,57 @@ exports.findAllAuthor = (req, res) => {
       else res.send(data);
     });
   };
-  
+  /////dang
+
+  exports.findallbookperwarehouse = (req, res) => {
+    Book.allbooksperwarehouse(req.params.month, req.params.year,(err, data) => {
+      if (err)
+        res.status(500).send({
+          message:
+            err.message || "Some error occurred while retrieving tutorials."
+        });
+      else res.send(data);
+    });
+  };
+
+  exports.findexportedinamonth = (req, res) => {
+    Book.mostexportedbookinmonth(req.params.month, req.params.year,(err, data) => {
+      if (err)
+        res.status(500).send({
+          message:
+            err.message || "Some error occurred while retrieving tutorials."
+        });
+      else res.send(data);
+    });
+  };
+
+  exports.findgenrepurchasedinmonth = (req, res) => {
+    Book.getbookbygenre(req.params.month, req.params.year,(err, data) => {
+      if (err)
+        res.status(500).send({
+          message:
+            err.message || "Some error occurred while retrieving tutorials."
+        });
+      else res.send(data);
+    });
+  };
+  exports.findmostbookpurchased = (req, res) => {
+    Book.mostbookspuschased(req.params.month, req.params.year,req.params.id_user,(err, data) => {
+      if (err)
+        res.status(500).send({
+          message:
+            err.message || "Some error occurred while retrieving tutorials."
+        });
+      else res.send(data);
+    });
+  };
+  exports.findprintedandebookmade = (req, res) => {
+    Book.getprintedandebookmade (req.params.month, req.params.year,req.params.id_user,(err, data) => {
+      if (err)
+        res.status(500).send({
+          message:
+            err.message || "Some error occurred while retrieving tutorials."
+        });
+      else res.send(data);
+    });
+  };

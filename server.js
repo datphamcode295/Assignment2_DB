@@ -28,7 +28,7 @@ require("./app/routes/creditCard.routes.js")(app);
 require("./app/routes/totalOrder.routes.js")(app);
 require("./app/routes/book.routes.js")(app);
 require("./app/routes/storeInformation.routes.js")(app);
-
+require("./app/routes/warehouse.routes.js")(app);
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {

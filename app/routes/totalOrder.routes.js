@@ -13,6 +13,10 @@ module.exports = app => {
 //http://localhost:8080/api/totalOrders/status/:id
 //khoong can tham so
     router.put("/status/:id", totalOrders.chageStatus);
+    ///http://localhost:8080/api/totalOrders/1999-07-24%2022:42:00/
+    router.get("/getbycardinaday/:date", totalOrders.getbycardinaday);
+    //http://localhost:8080/api/totalOrders/getbycardinadaybutfailed/1976-08-13%2009:24:00/
+    router.get("/getbycardinadaybutfailed/:date", totalOrders.getbycardinadaybutfailed);
 
   
     app.use('/api/totalOrders', router);  

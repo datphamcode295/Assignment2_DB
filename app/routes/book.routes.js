@@ -43,7 +43,17 @@ module.exports = app => {
     //(i.11)
     //http://localhost:8080/api/books/mostBoughInMonth/2006/11
     router.get("/mostBoughInMonth/:year/:month", books.mostBoughInMonth);
-
+    ////dang
+    ////http://localhost:8080/api/books/allbookinwarehouse/5/2020/
+    router.get("/allbookinwarehouse/:month/:year", books.findallbookperwarehouse);
+    ////http://localhost:8080/api/books/exportedbook/12/1974/
+    router.get("/exportedbook/:month/:year", books.findexportedinamonth);
+    /////http://localhost:8080/api/books/findgenrebook/06/1989/
+    router.get("/findgenrebook/:month/:year", books.findgenrepurchasedinmonth);
+    ////http://localhost:8080/api/books//findmostbook/11/2006/149/
+    router.get("/findmostbook/:month/:year/:id_user",books.findmostbookpurchased);
+    ///http://localhost:8080/api/books//allbookmade/11/2006/149
+    router.get("/allbookmade/:month/:year/:id_user",books.findprintedandebookmade);
 
 
 

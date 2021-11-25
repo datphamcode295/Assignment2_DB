@@ -12,6 +12,10 @@ module.exports = app => {
     //http://localhost:8080/api/authors/bestInMonth/2006/11
     router.get("/bestInMonth/:year/:month", authors.bestInMonth);
 
+    ///dang
+    router.get("/samecategory/:data",authors.findsamecategory);
+    //http://localhost:8080/api/authors/samekeyword/nam/
+    router.get("/samekeyword/:data",authors.findsamenumberofkeyword);
 
   
     app.use('/api/authors', router);
